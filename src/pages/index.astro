@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import PXL_20210805_183820724 from '../images/PXL_20210805_183820724.PORTRAIT.jpg';
+import PXL_20220122_112109431 from '../images/PXL_20220122_112109431.PORTRAIT.jpg';
+import PXL_20230713_221315248 from '../images/PXL_20230713_221315248.PORTRAIT.jpg';
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      .hero-image {
+        width: 100%;
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-auto-flow: column;
+        grid-template-rows: 30vh;
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <Header title={SITE_TITLE} />
+    <div class="hero-image">
+      <Image
+        width="600"
+        src={PXL_20210805_183820724}
+        role="presentation"
+        alt=""
+      />
+      <Image
+        width="600"
+        src={PXL_20220122_112109431}
+        role="presentation"
+        alt=""
+      />
+      <Image
+        width="600"
+        src={PXL_20230713_221315248}
+        role="presentation"
+        alt=""
+      />
+    </div>
+    <main>
+      <h1>Willkommen bei Bastel&nbsp;Liebe!</h1>
+
+      <p><em>Die Freude steckt in jedem Schnipsel.</em></p>
+
+      <p>
+        Bastel Liebe ist ein Kleinunternehmen, das sich auf die Herstellung von
+        personalisierten Bastelarbeiten spezialisiert hat. Plane zusammen mit
+        mir den perfekten Geburtstag deines Kindes. Ich biete dir eine Vielzahl
+        von Bastelarbeiten an, die du individuell nach deinen Wünschen gestalten
+        kannst. Eine grosse Auswahl an <a href="/mottos">Mottovorschlägen</a>
+         finden Sie auf meiner Webseite. Ich freue mich auf Ihre Anfrage.
+      </p>
+    </main>
+    <Footer />
+  </body>
+</html>

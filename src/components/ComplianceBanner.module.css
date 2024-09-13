@@ -1,0 +1,49 @@
+.container {
+  font-size: 0.9rem;
+  max-height: 0;
+  animation: slide-up 0.5s ease-out forwards;
+  animation-delay: 2s;
+  overflow: hidden;
+  position: fixed;
+  background-color: rgb(var(--gray-light));
+  bottom: 0;
+}
+
+.content {
+  padding: 1em;
+  border-top: 2px solid rgb(var(--gray-light));
+}
+
+@keyframes slide-up {
+  0% {
+    max-height: 0;
+  }
+  100% {
+    max-height: 100vh;
+  }
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+  margin-top: 1em;
+  align-items: center;
+  justify-items: center;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  background-color: rgb(var(--gray-dark));
+  color: rgb(var(--gray-light));
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+button.secondary {
+  background-color: transparent;
+  color: rgb(var(--gray-dark));
+}

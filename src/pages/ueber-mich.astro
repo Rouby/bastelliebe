@@ -1,0 +1,19 @@
+---
+import { Picture } from 'astro:assets';
+import Helga from '../images/helga.jpg';
+import Layout from '../layouts/Page.astro';
+---
+
+<Layout title="Über mich" description="Ein kleiner Text zu mir">
+  <p>
+    Mein Name ist Helga Burke. Ich bin Mutter von zwei Kindern. 2018 habe ich
+    begonnen meiner ältesten Tochter eine Mottoparty zu organisieren. Das
+    Feedback der Kinder und Eltern war so positiv, dass ich mich entschlossen
+    habe, meine Leidenschaft zum Beruf zu machen. Die darauf folgenden Jahre
+    wurden dann immer mehr Kindergeburtstage von mir organisiert. Daraufhin habe
+    ich mich entschlossen, auch anderen eine Freude mit meinen Bastelideen zu
+    machen.
+  </p>
+
+  <Picture src={Helga} alt="Helga Burke" />
+</Layout>
