@@ -28,12 +28,13 @@ RUN yarn run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
+
+RUN adduser -D static
+USER static
+
 WORKDIR /home/static
 
-
 COPY --from=builder /home/static/dist ./
-
-USER static
 
 EXPOSE 3000
 
