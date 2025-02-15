@@ -62,26 +62,29 @@ jobs:
 
   deploy:
     name: 🚀 Deploy
-    runs-on: self-hosted
+    runs-on: arc-runner-set
     needs: [build]
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
 
     environment:
       name: production
-      url: "http://bastelliebe.art/"
+      url: "https://bastelliebe.art/"
 
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
-      - name: 📥 Setup kubeconfig
+      - name: 📥 Install kubectl and helm
         run: |
-          New-Item -ItemType Directory -Path "$HOME\.kube" -Force
-          $env:KUBECONFIG_CONTENT = "${{ secrets.KUBECONFIG }}"
-          $env:KUBECONFIG_CONTENT | Out-File -FilePath "$HOME\.kube\config" -Force -Encoding UTF8
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl"
+          sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+          kubectl version --client
+          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+          chmod 700 get_helm.sh
+          ./get_helm.sh
       - name: 🚀 Deploy
         run: |
-          helm upgrade website -n "bastelliebe" --install --create-namespace `
-              --set image.repository=ghcr.io/rouby/bastelliebe `
-              --set image.tag="${{ github.ref_name }}-${{ github.sha }}" `
+          helm upgrade website -n "bastelliebe" --install --create-namespace \
+              --set image.repository=ghcr.io/rouby/bastelliebe \
+              --set image.tag="${{ github.ref_name }}-${{ github.sha }}" \
               ./helm
